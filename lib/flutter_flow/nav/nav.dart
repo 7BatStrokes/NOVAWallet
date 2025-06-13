@@ -35,12 +35,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => SplashScreenWidget(),
+      errorBuilder: (context, state) => appStateNotifier.showSplashImage
+          ? Builder(
+              builder: (context) => Container(
+                color: Colors.transparent,
+                child: Image.asset(
+                  'assets/images/Splace_screen.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            )
+          : SplashScreenWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => SplashScreenWidget(),
+          builder: (context, _) => appStateNotifier.showSplashImage
+              ? Builder(
+                  builder: (context) => Container(
+                    color: Colors.transparent,
+                    child: Image.asset(
+                      'assets/images/Splace_screen.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                )
+              : SplashScreenWidget(),
         ),
         FFRoute(
           name: SplashScreenWidget.routeName,
