@@ -103,7 +103,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     child: AutoSizeText(
-                                      'Keep track your monthly spending with us',
+                                      'Keep track of your monthly spending with us',
                                       textAlign: TextAlign.start,
                                       maxLines: 3,
                                       minFontSize: 32.0,
@@ -352,20 +352,29 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                   child: Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 16.0, 5.0),
-                    child: Text(
-                      'Skip',
-                      maxLines: 1,
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            lineHeight: 1.2,
-                            useGoogleFonts: !FlutterFlowTheme.of(context)
-                                .bodyMediumIsCustom,
-                          ),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed(LoginPageWidget.routeName);
+                      },
+                      child: Text(
+                        'Skip',
+                        maxLines: 1,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              fontSize: 17.0,
+                              letterSpacing: 0.0,
+                              lineHeight: 1.2,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
+                            ),
+                      ),
                     ),
                   ),
                 ),
