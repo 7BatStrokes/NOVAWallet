@@ -9,6 +9,31 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'profile_wid_model.dart';
 export 'profile_wid_model.dart';
 
+import 'package:nova_wallet/backend/api_service.dart';
+
+final ApiService _api = ApiService();
+
+void _getCountryCodes(BuildContext context) async {
+  final codes = await _api.getCountryCodes();
+  final text = codes.isNotEmpty
+      ? '✅ Códigos:\n${codes.map((c) => '${c.name} (+${c.code})\nID: ${c.id}').join('\n\n')}'
+      : '❌ No se pudo obtener los códigos';
+
+  showDialog(
+    context: context,
+    builder: (_) => AlertDialog(
+      title: const Text('Países disponibles'),
+      content: Text(text),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('OK'),
+        ),
+      ],
+    ),
+  );
+}
+
 class ProfileWidWidget extends StatefulWidget {
   const ProfileWidWidget({super.key});
 
@@ -380,6 +405,67 @@ class _ProfileWidWidgetState extends State<ProfileWidWidget>
                             ),
                           ].divide(SizedBox(width: 16.0)),
                         ),
+                      ),
+                    ),
+                  ),
+                ),
+                // 🔽 Nuevo botón para obtener códigos de país
+                InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () => _getCountryCodes(context),
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).darkInput,
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: Padding(
+                      padding:
+                      EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 16.0, 8.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Container(
+                            width: 48.0,
+                            height: 48.0,
+                            decoration: BoxDecoration(
+                              color:
+                              FlutterFlowTheme.of(context).darkBoxColor,
+                              shape: BoxShape.circle,
+                            ),
+                            alignment: AlignmentDirectional(0.0, 0.0),
+                            child: Icon(
+                              Icons.public,
+                              color: FlutterFlowTheme.of(context).tertiary,
+                              size: 24.0,
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              'Códigos de país',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color: FlutterFlowTheme.of(context).tertiary,
+                                fontSize: 17.0,
+                                letterSpacing: 0.0,
+                                lineHeight: 1.5,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
+                              ),
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: FlutterFlowTheme.of(context).tertiary,
+                            size: 20.0,
+                          ),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
                     ),
                   ),
