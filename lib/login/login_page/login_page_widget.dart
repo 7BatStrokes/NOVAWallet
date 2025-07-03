@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'login_page_model.dart';
+import 'package:nova_wallet/backend/auth_service.dart';
+import 'package:nova_wallet/models/login_response.dart';
 export 'login_page_model.dart';
 
 class LoginPageWidget extends StatefulWidget {
@@ -31,17 +33,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {
-          _model.textController1?.text = 'ronaldrichards@gmail.com';
-          _model.textController2?.text = '1234';
-        }));
   }
 
   @override
   void dispose() {
     _model.dispose();
-
     super.dispose();
   }
 
@@ -70,13 +66,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       'Log In',
                       maxLines: 1,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'SF UI Font',
-                            color: FlutterFlowTheme.of(context).tertiary,
-                            fontSize: 28.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.bold,
-                            lineHeight: 1.5,
-                          ),
+                        fontFamily: 'SF UI Font',
+                        color: FlutterFlowTheme.of(context).tertiary,
+                        fontSize: 28.0,
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.bold,
+                        lineHeight: 1.5,
+                      ),
                     ),
                   ),
                 ),
@@ -85,12 +81,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                   child: Text(
                     'Welcome back, please log in continue journey',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'SF UI Font',
-                          color: FlutterFlowTheme.of(context).tertiary,
-                          fontSize: 17.0,
-                          letterSpacing: 0.0,
-                          lineHeight: 1.5,
-                        ),
+                      fontFamily: 'SF UI Font',
+                      color: FlutterFlowTheme.of(context).tertiary,
+                      fontSize: 17.0,
+                      letterSpacing: 0.0,
+                      lineHeight: 1.5,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -117,41 +113,41 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: !FlutterFlowTheme.of(context)
-                                      .labelMediumIsCustom,
-                                ),
+                              fontFamily: FlutterFlowTheme.of(context)
+                                  .labelMediumFamily,
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              fontSize: 14.0,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .labelMediumIsCustom,
+                            ),
                             hintText: 'Enter your email address',
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  fontSize: 17.0,
-                                  letterSpacing: 0.0,
-                                  lineHeight: 1.5,
-                                  useGoogleFonts: !FlutterFlowTheme.of(context)
-                                      .labelMediumIsCustom,
-                                ),
+                              fontFamily: FlutterFlowTheme.of(context)
+                                  .labelMediumFamily,
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              fontSize: 17.0,
+                              letterSpacing: 0.0,
+                              lineHeight: 1.5,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .labelMediumIsCustom,
+                            ),
                             errorStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  color: FlutterFlowTheme.of(context).error,
-                                  fontSize: 15.0,
-                                  letterSpacing: 0.0,
-                                  lineHeight: 1.2,
-                                  useGoogleFonts: !FlutterFlowTheme.of(context)
-                                      .bodyMediumIsCustom,
-                                ),
+                              fontFamily: FlutterFlowTheme.of(context)
+                                  .bodyMediumFamily,
+                              color: FlutterFlowTheme.of(context).error,
+                              fontSize: 15.0,
+                              letterSpacing: 0.0,
+                              lineHeight: 1.2,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
+                            ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).darkInput,
@@ -182,23 +178,23 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                             filled: true,
                             fillColor:
-                                FlutterFlowTheme.of(context).primaryBackground,
+                            FlutterFlowTheme.of(context).primaryBackground,
                             contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 13.0, 0.0, 13.0),
                           ),
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                fontSize: 17.0,
-                                letterSpacing: 0.0,
-                                lineHeight: 1.5,
-                                useGoogleFonts: !FlutterFlowTheme.of(context)
-                                    .bodyMediumIsCustom,
-                              ),
+                            fontFamily: FlutterFlowTheme.of(context)
+                                .bodyMediumFamily,
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            fontSize: 17.0,
+                            letterSpacing: 0.0,
+                            lineHeight: 1.5,
+                            useGoogleFonts: !FlutterFlowTheme.of(context)
+                                .bodyMediumIsCustom,
+                          ),
                           keyboardType: TextInputType.emailAddress,
                           cursorColor: FlutterFlowTheme.of(context).tertiary,
                           validator: _model.textController1Validator
@@ -218,44 +214,44 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .labelMediumFamily,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts:
-                                        !FlutterFlowTheme.of(context)
-                                            .labelMediumIsCustom,
-                                  ),
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelMediumFamily,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                fontSize: 14.0,
+                                letterSpacing: 0.0,
+                                useGoogleFonts:
+                                !FlutterFlowTheme.of(context)
+                                    .labelMediumIsCustom,
+                              ),
                               hintText: 'Enter your password',
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .labelMediumFamily,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    fontSize: 17.0,
-                                    letterSpacing: 0.0,
-                                    lineHeight: 1.5,
-                                    useGoogleFonts:
-                                        !FlutterFlowTheme.of(context)
-                                            .labelMediumIsCustom,
-                                  ),
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelMediumFamily,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                fontSize: 17.0,
+                                letterSpacing: 0.0,
+                                lineHeight: 1.5,
+                                useGoogleFonts:
+                                !FlutterFlowTheme.of(context)
+                                    .labelMediumIsCustom,
+                              ),
                               errorStyle: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
-                                    color: FlutterFlowTheme.of(context).error,
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    lineHeight: 1.2,
-                                    useGoogleFonts:
-                                        !FlutterFlowTheme.of(context)
-                                            .bodyMediumIsCustom,
-                                  ),
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color: FlutterFlowTheme.of(context).error,
+                                fontSize: 15.0,
+                                letterSpacing: 0.0,
+                                lineHeight: 1.2,
+                                useGoogleFonts:
+                                !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).darkInput,
@@ -291,8 +287,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   16.0, 13.0, 0.0, 13.0),
                               suffixIcon: InkWell(
                                 onTap: () => safeSetState(
-                                  () => _model.passwordVisibility =
-                                      !_model.passwordVisibility,
+                                      () => _model.passwordVisibility =
+                                  !_model.passwordVisibility,
                                 ),
                                 focusNode: FocusNode(skipTraversal: true),
                                 child: Icon(
@@ -307,13 +303,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'SF UI Font',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  fontSize: 17.0,
-                                  letterSpacing: 0.0,
-                                  lineHeight: 1.5,
-                                ),
+                              fontFamily: 'SF UI Font',
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              fontSize: 17.0,
+                              letterSpacing: 0.0,
+                              lineHeight: 1.5,
+                            ),
                             cursorColor: FlutterFlowTheme.of(context).tertiary,
                             validator: _model.textController2Validator
                                 .asValidator(context),
@@ -339,28 +335,39 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'SF UI Font',
-                                      color:
-                                          FlutterFlowTheme.of(context).tertiary,
-                                      fontSize: 17.0,
-                                      letterSpacing: 0.0,
-                                      lineHeight: 1.5,
-                                    ),
+                                  fontFamily: 'SF UI Font',
+                                  color:
+                                  FlutterFlowTheme.of(context).tertiary,
+                                  fontSize: 17.0,
+                                  letterSpacing: 0.0,
+                                  lineHeight: 1.5,
+                                ),
                               ),
                             ),
                           ),
                         ),
                         FFButtonWidget(
-                          onPressed: () async {
-                            if (_model.formKey.currentState == null ||
-                                !_model.formKey.currentState!.validate()) {
-                              return;
-                            }
-                            FFAppState().islogin = true;
-                            FFAppState().update(() {});
+                            onPressed: () async {
+                              if (_model.formKey.currentState == null ||
+                                  !_model.formKey.currentState!.validate()) {
+                                return;
+                              }
 
-                            context.goNamed(NavbarCopyWidget.routeName);
-                          },
+                              final email = _model.textController1!.text.trim();
+                              final password = _model.textController2!.text;
+
+                              LoginResponse? result = await AuthService.login(email, password);
+
+                              if (result != null && result.success) {
+                                FFAppState().islogin = true;
+                                context.goNamed(NavbarCopyWidget.routeName);
+                              } else {
+                                final errorMsg = result?.message ?? 'Login failed';
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text(errorMsg)),
+                                );
+                              }
+                            },
                           text: 'Log in',
                           options: FFButtonOptions(
                             width: double.infinity,
@@ -372,12 +379,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'SF UI Font',
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  fontSize: 18.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                              fontFamily: 'SF UI Font',
+                              color: FlutterFlowTheme.of(context).secondary,
+                              fontSize: 18.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w600,
+                            ),
                             elevation: 0.0,
                             borderSide: BorderSide(
                               color: Colors.transparent,
@@ -405,18 +412,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      fontSize: 20.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.bold,
-                                      lineHeight: 1.5,
-                                      useGoogleFonts:
-                                          !FlutterFlowTheme.of(context)
-                                              .bodyMediumIsCustom,
-                                    ),
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  fontSize: 20.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
+                                  lineHeight: 1.5,
+                                  useGoogleFonts:
+                                  !FlutterFlowTheme.of(context)
+                                      .bodyMediumIsCustom,
+                                ),
                               ),
                             ),
                           ),
@@ -444,12 +451,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'SF UI Font',
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  fontSize: 17.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                              fontFamily: 'SF UI Font',
+                              color: FlutterFlowTheme.of(context).tertiary,
+                              fontSize: 17.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.normal,
+                            ),
                           ),
                           TextSpan(
                             text: 'Sign up',
@@ -463,14 +470,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           )
                         ],
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              lineHeight: 1.2,
-                              useGoogleFonts: !FlutterFlowTheme.of(context)
-                                  .bodyMediumIsCustom,
-                            ),
+                          fontFamily:
+                          FlutterFlowTheme.of(context).bodyMediumFamily,
+                          fontSize: 17.0,
+                          letterSpacing: 0.0,
+                          lineHeight: 1.2,
+                          useGoogleFonts: !FlutterFlowTheme.of(context)
+                              .bodyMediumIsCustom,
+                        ),
                       ),
                     ),
                   ),
