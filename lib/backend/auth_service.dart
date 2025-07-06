@@ -27,15 +27,35 @@ class AuthService {
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
 
+      final decoded = jsonDecode(response.body);
+
       if (response.statusCode == 200) {
-        final decoded = jsonDecode(response.body);
         return LoginResponse.fromJson(decoded);
       } else {
-        return null;
+        String rawError = decoded['error'] ?? 'Login failed';
+        String userFriendlyMessage;
+
+        if (rawError.contains('invalid password')) {
+          userFriendlyMessage = 'Incorrect password. Please try again.';
+        } else if (rawError.contains('failed to find user')) {
+          userFriendlyMessage = 'No account found with this email.';
+        } else {
+          userFriendlyMessage = 'Login failed. Please try again.';
+        }
+
+        return LoginResponse(
+          token: '',
+          message: userFriendlyMessage,
+          success: false,
+        );
       }
     } catch (e) {
-      print('❌ Error during login: $e');
-      return null;
+      print('❌ Exception during login: $e');
+      return LoginResponse(
+        token: '',
+        message: 'Ocurrió un error de red o del servidor. Intenta nuevamente.',
+        success: false,
+      );
     }
   }
 }

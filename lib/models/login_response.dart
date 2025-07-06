@@ -12,7 +12,7 @@ class LoginResponse {
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
       token: json['data'] ?? '',
-      message: json['message'] ?? '',
+      message: json['message'] ?? json['error'] ?? 'Unknown error',
       success: json['success'] ?? false,
     );
   }
